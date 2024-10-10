@@ -5,20 +5,25 @@ import { getDatabase, ref, onValue, push, set } from "firebase/database";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const database = getDatabase(cong);
+  const messageRef = ref(database, "messages");
+  const [itemList, setItemList] = useState({});
+  const [count, setCount] = useState(0);
+  const placeholder = "Was brauchen wir noch?";
+  const [item, setItem] = useState(placeholder);
+
 
   useEffect(() => {
     // Initialize the Firebase database with the provided configuration
-    const database = getDatabase(cong);
     
     // Reference to the specific collection in the database
-    const collectionRef = ref(database, "messages");
 
     
 
     // Function to fetch data from the database
     const fetchData = () => {
       // Listen for changes in the collection
-      onValue(collectionRef, (snapshot) => {
+      onValue(messageRef, (snapshot) => {
         const dataItem = snapshot.val();
 
         // Check if dataItem exists
@@ -26,20 +31,28 @@ const App = () => {
           // Convert the object values into an array
           const displayItem = Object.values(dataItem);
           setData(displayItem);
+          setItemList(displayItem);
         }
       });
     };
     
     // Fetch data when the component mounts
     fetchData();
-  }, []);
 
+  }, []);
+  
+  const addItem = (event) => {
+    event.preventDefault();
+    itemList[count] = item;
+    set(messageRef, itemList);
+    setItem(placeholder);
+  };
   
   return (
     <div>
       <h1>WG Website</h1>
-      <form>
-        <input type='text' placeholder='Was brauchen wir noch?'></input>
+      <form onSubmit={addItem}>
+        <input type='text' placeholder={item} onChange={(e) => {setItem(e.target.value); setCount(count+1)}}></input>
         <button type='submit'>Submit</button>
       </form>
       <ul>
