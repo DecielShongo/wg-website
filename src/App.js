@@ -37,10 +37,17 @@ const App = () => {
   
   return (
     <div>
-      <h1>Data from database:</h1>
+      <h1>WG Website</h1>
+      <form>
+        <input type='text' placeholder='Was brauchen wir noch?'></input>
+        <button type='submit'>Submit</button>
+      </form>
       <ul>
         {data.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>
+            <input type="checkbox" id={item}></input>
+            <label for={item}>{item}</label>
+            </li>
         ))}
       </ul>
     </div>
