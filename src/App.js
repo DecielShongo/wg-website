@@ -47,22 +47,24 @@ const App = () => {
     set(messageRef, itemList);
     setItem(placeholder);
   };
+
+
   
   return (
-    <div>
-      <h1>WG Website</h1>
-      <form onSubmit={addItem}>
-        <input type='text' placeholder={item} onChange={(e) => {setItem(e.target.value); setCount(count+1)}}></input>
-        <button type='submit'>Submit</button>
-      </form>
-      <ul>
+    <div className='bg-gradient-to-t from-pink-400 to-pink-100 flex w-full flex-col h-screen justify-between items-center text-center'>
+      <h1 className='mt-20 text-3xl font-semibold '>WG Wünsche</h1>
+      <ul className='mt-40 flex-col flex items-start'>
         {data.map((item, index) => (
           <li key={index}>
-            <input type="checkbox" id={item}></input>
-            <label for={item}>{item}</label>
+            <input className='rounded-full' type="checkbox" id={item} ></input>
+            <label className='ml-' for={item}>{item}</label>
             </li>
         ))}
       </ul>
+      <form className='mb-16' onSubmit={addItem}>
+        <input className='w-56 bg-white border-2 border-pink-600 rounded-full h-10 p-5' type='text' placeholder={item} onChange={(e) => {setItem(e.target.value); setCount(count+1)}}></input>
+        <button className='bg-white w-8 h-8 ml-6 text-black rounded-full' type='submit'>&gt;</button>
+      </form>
     </div>
   );
 }
