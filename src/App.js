@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react' 
 import cong from "./index"
-import { getDatabase, ref, onValue, push, set } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
     // Fetch data when the component mounts
     fetchData();
 
-  }, []);
+  }, [messageRef]);
   
   const addItem = (event) => {
     event.preventDefault();
