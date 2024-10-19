@@ -65,7 +65,7 @@ const App = () => {
   
   return (
     <div className='bg-gradient-to-t from-pink-400 to-pink-100 flex w-full flex-col h-screen justify-between items-center text-center'>
-      <h1 className='mt-32 text-3xl font-semibold '>WG Wünsche</h1>
+      <h1 className='mt-32 text-3xl font-normal '>&#10024;WG Wünsche&#10024;</h1>
       <ul className='mt-36 flex-col flex items-start'>
         {data.map((item, index) => (
           <li key={item} className='flex items-center justify-start w-80 h-11'>
