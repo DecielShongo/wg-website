@@ -9,10 +9,10 @@ const App = () => {
   const [count, setCount] = useState(0);
   const placeholder = "Was brauchen wir noch?";
   const [item, setItem] = useState(placeholder);
-  const database = getDatabase(cong);
   
   useEffect(() => {
     // Initialize the Firebase database with the provided configuration
+    const database = getDatabase(cong);
     const messageRef = ref(database, "messages");
     
     // Reference to the specific collection in the database
@@ -41,7 +41,7 @@ const App = () => {
   }, []);
   
   const addItem = (event) => {
-
+    const database = getDatabase(cong);
     const messageRef = ref(database, "messages");
 
     event.preventDefault();
@@ -53,7 +53,7 @@ const App = () => {
 
   const removeItem = (index) => {
 
-
+    const database = getDatabase(cong);
     const messageRef = ref(database, "messages");
 
     delete itemList[index];
