@@ -39,7 +39,7 @@ const App = () => {
     // Fetch data when the component mounts
     fetchData();
 
-  }, [messageRef]);
+  });
   
   const addItem = (event) => {
     event.preventDefault();
@@ -48,22 +48,29 @@ const App = () => {
     setItem(placeholder);
   };
 
+  const removeItem = (index) => {
+    delete itemList.index;
+    setCount(count - 1);
+    set(messageRef, itemList);
+  };
+
 
   
   return (
     <div className='bg-gradient-to-t from-pink-400 to-pink-100 flex w-full flex-col h-screen justify-between items-center text-center'>
-      <h1 className='mt-20 text-3xl font-semibold '>WG Wünsche</h1>
-      <ul className='mt-40 flex-col flex items-start'>
+      <h1 className='mt-32 text-3xl font-semibold '>WG Wünsche</h1>
+      <ul className='mt-36 flex-col flex items-start'>
         {data.map((item, index) => (
-          <li key={index}>
-            <input className='rounded-full' type="checkbox" id={item} ></input>
-            <label className='ml-' for={item}>{item}</label>
+          <li key={index} className='flex items-center justify-start w-80 h-11'>
+            <input className='rounded-full peer' type="checkbox" id={item} ></input>
+            <label className='ml-5 text-xl tracking-wider peer-checked:line-through w-full text-left' for={item}>{item}</label>
+            <button onClick={removeItem(index)} className='text-2xl hover:text-red-500 hover:text-3xl cursor-pointer active:text-2xl'>x</button>
             </li>
         ))}
       </ul>
       <form className='mb-16' onSubmit={addItem}>
-        <input className='w-56 bg-white border-2 border-pink-600 rounded-full h-10 p-5' type='text' placeholder={item} onChange={(e) => {setItem(e.target.value); setCount(count+1)}}></input>
-        <button className='bg-white w-8 h-8 ml-6 text-black rounded-full' type='submit'>&gt;</button>
+        <input className='w-64 bg-white border-2 border-pink-600 rounded-full h-11 p-5' type='text' placeholder={item} onChange={(e) => {setItem(e.target.value); setCount(count+1)}}></input>
+        <button className='bg-white w-11 h-11 ml-6 text-black rounded-full border-pink-600 border-2' type='submit'>&gt;</button>
       </form>
     </div>
   );
