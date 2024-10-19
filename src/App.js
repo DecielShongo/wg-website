@@ -68,7 +68,7 @@ const App = () => {
       <h1 className='mt-32 text-3xl font-semibold '>WG Wünsche</h1>
       <ul className='mt-36 flex-col flex items-start'>
         {data.map((item, index) => (
-          <li key={index} className='flex items-center justify-start w-80 h-11'>
+          <li key={item} className='flex items-center justify-start w-80 h-11'>
             <input className='rounded-full peer' type="checkbox" id={item} ></input>
             <label className='ml-5 text-xl tracking-wider peer-checked:line-through w-full text-left' for={item}>{item}</label>
             <button onClick={() => removeItem(index)} className='text-2xl hover:text-red-500 hover:text-3xl cursor-pointer active:text-2xl'>x</button>
